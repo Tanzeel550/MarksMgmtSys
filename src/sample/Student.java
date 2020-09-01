@@ -4,15 +4,15 @@ public class Student {
     private static int rollCount = 1;
 
     private int rollNo;
-    private String name;
+    private final String name;
 
-    private int englishMarks;
-    private int urduMarks;
-    private int physicsMarks;
-    private int chemistryMarks;
-    private int biologyMarks;
-    private int totalMarks;
-    private int islamiatMarks;
+    private final int englishMarks;
+    private final int urduMarks;
+    private final int physicsMarks;
+    private final int chemistryMarks;
+    private final int biologyMarks;
+    private final int totalMarks;
+    private final int islamiatMarks;
 
 
     public Student(String name, int englishMarks, int urduMarks, int physicsMarks, int chemistryMarks, int biologyMarks, int islamiatMarks) {
@@ -49,56 +49,28 @@ public class Student {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public int getEnglishMarks() {
         return englishMarks;
-    }
-
-    public void setEnglishMarks(int englishMarks) {
-        this.englishMarks = englishMarks;
     }
 
     public int getUrduMarks() {
         return urduMarks;
     }
 
-    public void setUrduMarks(int urduMarks) {
-        this.urduMarks = urduMarks;
-    }
-
     public int getPhysicsMarks() {
         return physicsMarks;
-    }
-
-    public void setPhysicsMarks(int physicsMarks) {
-        this.physicsMarks = physicsMarks;
     }
 
     public int getChemistryMarks() {
         return chemistryMarks;
     }
 
-    public void setChemistryMarks(int chemistryMarks) {
-        this.chemistryMarks = chemistryMarks;
-    }
-
     public int getBiologyMarks() {
         return biologyMarks;
     }
 
-    public void setBiologyMarks(int biologyMarks) {
-        this.biologyMarks = biologyMarks;
-    }
-
     public int getTotalMarks() {
         return totalMarks;
-    }
-
-    public void setTotalMarks(int totalMarks) {
-        this.totalMarks = totalMarks;
     }
 
     public int getRollNo() {
@@ -109,20 +81,8 @@ public class Student {
         this.rollNo = rollNo;
     }
 
-    public static int getRollCount() {
-        return rollCount;
-    }
-
-    public static void setRollCount(int rollCount) {
-        Student.rollCount = rollCount;
-    }
-
     public int getIslamiatMarks() {
         return islamiatMarks;
-    }
-
-    public void setIslamiatMarks(int islamiatMarks) {
-        this.islamiatMarks = islamiatMarks;
     }
 }
 

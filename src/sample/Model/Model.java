@@ -55,7 +55,6 @@ public class Model {
 
     public void open() {
         try {
-            System.out.println(CREATE_STUDENTS_TABLE_STRING);
             connection = DriverManager.getConnection(DATABASE_NAME);
 
             CREATE_STUDENTS_TABLE_QUERY = connection.createStatement();
@@ -111,11 +110,5 @@ public class Model {
         } catch (SQLException e) {
             System.out.println("Error Closing the Connection");
         }
-    }
-
-
-    public static void main(String[] args) {
-        Model model = new Model();
-
     }
 }

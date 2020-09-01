@@ -1,17 +1,18 @@
 package sample;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import sample.Model.Model;
 
 import java.sql.SQLException;
 
 public class Students {
-    ObservableList<Student> students = FXCollections.observableArrayList();
-
     private final static Students instance = new Students();
-
     private final Model model;
+    ObservableList<Student> students = FXCollections.observableArrayList();
 
     private Students() {
         model = new Model();
@@ -49,13 +50,32 @@ public class Students {
         return students.remove(student);
     }
 
-    public void loadData() throws SQLException {
-        model.loadData();
+    public void loadData() {
+        try {
+            model.loadData();
+        } catch (SQLException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("File Error");
+            alert.setHeaderText("You have done something wrong with the File System.");
+            alert.setContentText("Try To Install The Software Again!");
+            alert.getButtonTypes().add(ButtonType.CLOSE);
+            alert.showAndWait();
+            Platform.exit();
+        }
     }
 
-    public void saveData() throws SQLException{
-        model.saveData();
-        model.close();
+    public void saveData() {
+        try {
+            model.saveData();
+            model.close();
+        } catch (SQLException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("There was an error saving the Data.");
+            alert.setContentText("Try To Install The Software Again!");
+            alert.getButtonTypes().add(ButtonType.CLOSE);
+            alert.showAndWait();
+            Platform.exit();
+        }
     }
-
 }

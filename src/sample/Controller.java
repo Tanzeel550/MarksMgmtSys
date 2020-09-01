@@ -6,7 +6,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class Controller {
 
-
     @FXML
     private TableColumn<String, Student> nameCol;
 
@@ -84,8 +83,7 @@ public class Controller {
             Alert alert = new Alert(Alert.AlertType.ERROR, "We have got some Error here. Please Retry!", ButtonType.CLOSE);
             alert.setTitle("Error");
             alert.showAndWait();
-        }
-        else {
+        } else {
             handleTableViewSelectionClearDataTotalMarks(null);
         }
     }
@@ -125,8 +123,7 @@ public class Controller {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "The name " + student.getName() + " already exists in the Table", ButtonType.CLOSE);
                 alert.setTitle("Error");
                 alert.showAndWait();
-            }
-            else
+            } else
                 handleTableViewSelectionClearDataTotalMarks(student);
         }
 

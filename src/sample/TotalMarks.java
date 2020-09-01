@@ -1,9 +1,9 @@
 package sample;
 
 public class TotalMarks {
-    
-    private static TotalMarks instance = new TotalMarks();
-    
+
+    private static final TotalMarks instance = new TotalMarks();
+
     private int totalEnglishMarks;
     private int totalUrduMarks;
     private int totalPhysicsMarks;
@@ -22,7 +22,11 @@ public class TotalMarks {
         totalTotalMarks = 0;
     }
 
-    private void addIntoMarks (Student student) {
+    public static TotalMarks getInstance() {
+        return instance;
+    }
+
+    private void addIntoMarks(Student student) {
         totalEnglishMarks += student.getEnglishMarks();
         totalUrduMarks += student.getUrduMarks();
         totalPhysicsMarks += student.getPhysicsMarks();
@@ -31,8 +35,8 @@ public class TotalMarks {
         totalIslamiatMarks += student.getIslamiatMarks();
         totalTotalMarks += student.getTotalMarks();
     }
-    
-    private void subtractIntoMarks (Student student) {
+
+    private void subtractIntoMarks(Student student) {
         totalEnglishMarks -= student.getEnglishMarks();
         totalUrduMarks -= student.getUrduMarks();
         totalPhysicsMarks -= student.getPhysicsMarks();
@@ -42,20 +46,16 @@ public class TotalMarks {
         totalTotalMarks -= student.getTotalMarks();
     }
 
-    public static TotalMarks getInstance() {
-        return instance;
-    }
-
     public void updateTotalMarks(Student oldStudent, Student newStudent) {
         subtractIntoMarks(oldStudent);
         addIntoMarks(newStudent);
     }
-    
-    public void addTotalMarks (Student student) {
+
+    public void addTotalMarks(Student student) {
         addIntoMarks(student);
     }
-    
-    public void deleteTotalMarks (Student student) {
+
+    public void deleteTotalMarks(Student student) {
         subtractIntoMarks(student);
     }
 
@@ -63,55 +63,27 @@ public class TotalMarks {
         return totalEnglishMarks;
     }
 
-    public void setTotalEnglishMarks(int totalEnglishMarks) {
-        this.totalEnglishMarks = totalEnglishMarks;
-    }
-
     public int getTotalUrduMarks() {
         return totalUrduMarks;
-    }
-
-    public void setTotalUrduMarks(int totalUrduMarks) {
-        this.totalUrduMarks = totalUrduMarks;
     }
 
     public int getTotalPhysicsMarks() {
         return totalPhysicsMarks;
     }
 
-    public void setTotalPhysicsMarks(int totalPhysicsMarks) {
-        this.totalPhysicsMarks = totalPhysicsMarks;
-    }
-
     public int getTotalChemistryMarks() {
         return totalChemistryMarks;
-    }
-
-    public void setTotalChemistryMarks(int totalChemistryMarks) {
-        this.totalChemistryMarks = totalChemistryMarks;
     }
 
     public int getTotalBiologyMarks() {
         return totalBiologyMarks;
     }
 
-    public void setTotalBiologyMarks(int totalBiologyMarks) {
-        this.totalBiologyMarks = totalBiologyMarks;
-    }
-
     public int getTotalIslamiatMarks() {
         return totalIslamiatMarks;
     }
 
-    public void setTotalIslamiatMarks(int totalIslamiatMarks) {
-        this.totalIslamiatMarks = totalIslamiatMarks;
-    }
-
     public int getTotalTotalMarks() {
         return totalTotalMarks;
-    }
-
-    public void setTotalTotalMarks(int totalTotalMarks) {
-        this.totalTotalMarks = totalTotalMarks;
     }
 }
