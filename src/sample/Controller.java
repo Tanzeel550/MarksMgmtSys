@@ -6,6 +6,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class Controller {
 
+
     @FXML
     private TableColumn<String, Student> nameCol;
 
@@ -16,6 +17,10 @@ public class Controller {
     @FXML
     private TextField nameTextField, englishTextField, urduTextField, physicsTextField, chemistryTextField,
             biologyTextField, islamiatTextField, totalTextField;
+
+    @FXML
+    private Label totalEnglishMarksLabel, totalUrduMarksLabel, totalPhysicsMarksLabel, totalChemistryMarksLabel, totalBiologyMarksLabel, totalIslamiatMarksLabel, totalTotalMarksLabel;
+
 
     @FXML
     private TableView<Student> tableView;
@@ -47,6 +52,7 @@ public class Controller {
         }));
 
         tableView.getSelectionModel().selectFirst();
+        handleTotalMarks();
     }
 
     public void clearData() {
@@ -60,6 +66,17 @@ public class Controller {
         totalTextField.setText(" ");
     }
 
+
+    public void handleTotalMarks() {
+        totalEnglishMarksLabel.setText(String.valueOf(TotalMarks.getInstance().getTotalEnglishMarks()));
+        totalUrduMarksLabel.setText(String.valueOf(TotalMarks.getInstance().getTotalUrduMarks()));
+        totalPhysicsMarksLabel.setText(String.valueOf(TotalMarks.getInstance().getTotalPhysicsMarks()));
+        totalChemistryMarksLabel.setText(String.valueOf(TotalMarks.getInstance().getTotalChemistryMarks()));
+        totalBiologyMarksLabel.setText(String.valueOf(TotalMarks.getInstance().getTotalBiologyMarks()));
+        totalIslamiatMarksLabel.setText(String.valueOf(TotalMarks.getInstance().getTotalIslamiatMarks()));
+        totalTotalMarksLabel.setText(String.valueOf(TotalMarks.getInstance().getTotalTotalMarks()));
+    }
+
     public void deleteData() {
         Student student = tableView.getSelectionModel().getSelectedItem();
 
@@ -68,7 +85,9 @@ public class Controller {
             alert.setTitle("Error");
             alert.showAndWait();
         }
-        tableView.getSelectionModel().selectLast();
+        else {
+            handleTableViewSelectionClearDataTotalMarks(null);
+        }
     }
 
     public void updateData() {
@@ -80,9 +99,18 @@ public class Controller {
 //        Because when the the user has got some typo mistake, then the method getStudentForCreateAndUpdate() will return us an error.
         if (newStudent != null) {
             Students.getInstance().update(oldStudent, newStudent);
-            clearData();
+            handleTableViewSelectionClearDataTotalMarks(newStudent);
         }
-        tableView.getSelectionModel().select(newStudent);
+    }
+
+    public void handleTableViewSelectionClearDataTotalMarks(Student student) {
+        if (student == null)
+            tableView.getSelectionModel().selectLast();
+        else
+            tableView.getSelectionModel().select(student);
+
+        clearData();
+        handleTotalMarks();
     }
 
     public void addData() {
@@ -97,9 +125,9 @@ public class Controller {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "The name " + student.getName() + " already exists in the Table", ButtonType.CLOSE);
                 alert.setTitle("Error");
                 alert.showAndWait();
-            } else {
-                clearData();
             }
+            else
+                handleTableViewSelectionClearDataTotalMarks(student);
         }
 
     }
@@ -118,7 +146,7 @@ public class Controller {
             return new Student(name, englishMarks, urduMarks, physicsMarks, chemistryMarks, biologyMarks, islamiatMarks);
 
         } catch (NumberFormatException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "One of your fields are containig Text Data Instead of Numeric Data", ButtonType.CLOSE);
+            Alert alert = new Alert(Alert.AlertType.ERROR, "One of your fields are containing Text Data Instead of Numeric Data", ButtonType.CLOSE);
             alert.setHeaderText("Error");
             alert.showAndWait();
             return null;

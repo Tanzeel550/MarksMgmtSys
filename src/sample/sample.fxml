@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- The gridPane for all the other layouts -->
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+
+<!-- The gridPane for all the other layouts -->
 <GridPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.2-internal"
           fx:controller="sample.Controller">
 
@@ -96,7 +97,7 @@
         <GridPane hgap="20" style="-fx-alignment: center; -fx-border-color: #cecece; -fx-border-width: 2px" vgap="20">
 
             <padding>
-                <Insets bottom="10" left="20" right="20" top="10"/>
+                <Insets bottom="30" left="20" right="20" top="10"/>
             </padding>
 
             <Label style="-fx-background-color: white; -fx-font-weight: bolder; -fx-font-size: 20"
@@ -147,6 +148,39 @@
                 <RowConstraints/>
                 <RowConstraints/>
             </rowConstraints>
+        </GridPane>
+
+        <GridPane hgap="70" vgap="20" alignment="CENTER"  style="-fx-alignment: center; -fx-border-color: #cecece;
+                    -fx-border-width: 2px; -fx-background-color: whitesmoke" >
+
+            <padding>
+                <Insets top="20" bottom="20"/>
+            </padding>
+
+            <Label text="Total Marks Pane" style="-fx-font-weight: bolder; -fx-font-size: 20"
+                    GridPane.columnSpan="2"/>
+
+            <Label text="ENGLISH: " GridPane.rowIndex="1" GridPane.columnIndex="0" style="-fx-font-weight: bold" textFill="chocolate"/>
+            <Label GridPane.rowIndex="1" GridPane.columnIndex="1" fx:id="totalEnglishMarksLabel" style="-fx-font-weight: bold" textFill="chocolate"/>
+
+            <Label text="URDU: " GridPane.rowIndex="2" GridPane.columnIndex="0" style="-fx-font-weight: bold" textFill="cornflowerblue"/>
+            <Label GridPane.rowIndex="2" GridPane.columnIndex="1" fx:id="totalUrduMarksLabel" style="-fx-font-weight: bold" textFill="cornflowerblue"/>
+
+            <Label text="PHYSICS: " GridPane.rowIndex="3" GridPane.columnIndex="0" style="-fx-font-weight: bold" textFill="darkmagenta"/>
+            <Label GridPane.rowIndex="3" GridPane.columnIndex="1" fx:id="totalPhysicsMarksLabel" style="-fx-font-weight: bold" textFill="darkmagenta"/>
+
+            <Label text="CHEMISTRY: " GridPane.rowIndex="4" GridPane.columnIndex="0" style="-fx-font-weight: bold" textFill="darkcyan"/>
+            <Label GridPane.rowIndex="4" GridPane.columnIndex="1" fx:id="totalChemistryMarksLabel" style="-fx-font-weight: bold" textFill="darkcyan"/>
+
+            <Label text="BIOLOGY: " GridPane.rowIndex="5" GridPane.columnIndex="0" style="-fx-font-weight: bold" textFill="deeppink"/>
+            <Label GridPane.rowIndex="5" GridPane.columnIndex="1" fx:id="totalBiologyMarksLabel" style="-fx-font-weight: bold" textFill="deeppink"/>
+
+            <Label text="ISLAMIAT: " GridPane.rowIndex="6" GridPane.columnIndex="0" style="-fx-font-weight: bold" textFill="deepskyblue"/>
+            <Label GridPane.rowIndex="6" GridPane.columnIndex="1" fx:id="totalIslamiatMarksLabel" style="-fx-font-weight: bold" textFill="deepskyblue"/>
+
+            <Label text="TOTAL: " GridPane.rowIndex="7" GridPane.columnIndex="0" style="-fx-font-weight: bold" textFill="lime"/>
+            <Label GridPane.rowIndex="7" GridPane.columnIndex="1" fx:id="totalTotalMarksLabel" style="-fx-font-weight: bold" textFill="lime"/>
+
         </GridPane>
 
     </FlowPane>

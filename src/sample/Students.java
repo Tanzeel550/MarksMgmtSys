@@ -30,6 +30,7 @@ public class Students {
         int index = students.indexOf(oldStudent);
         students.remove(index);
         students.add(index, newStudent);
+        TotalMarks.getInstance().updateTotalMarks(oldStudent, newStudent);
     }
 
     public boolean add(Student student) {
@@ -39,10 +40,12 @@ public class Students {
         }
         student.setRollNo(students.size());
         students.add(student);
+        TotalMarks.getInstance().addTotalMarks(student);
         return true;
     }
 
     public boolean delete(Student student) {
+        TotalMarks.getInstance().deleteTotalMarks(student);
         return students.remove(student);
     }
 
