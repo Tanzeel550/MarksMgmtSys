@@ -10,10 +10,12 @@ public class Controller {
     private TableColumn<String, Student> nameCol;
 
     @FXML
-    private TableColumn<Integer, Student> rollNoCol, englishCol, urduCol, physicsCol, chemistryCol, biologyCol, totalCol, islamiatCol;
+    private TableColumn<Integer, Student> rollNoCol, englishCol, urduCol, physicsCol, chemistryCol, biologyCol,
+            totalCol, islamiatCol;
 
     @FXML
-    private TextField nameTextField, englishTextField, urduTextField, physicsTextField, chemistryTextField, biologyTextField, islamiatTextField, totalTextField;
+    private TextField nameTextField, englishTextField, urduTextField, physicsTextField, chemistryTextField,
+            biologyTextField, islamiatTextField, totalTextField;
 
     @FXML
     private TableView<Student> tableView;
@@ -31,11 +33,6 @@ public class Controller {
         islamiatCol.setCellValueFactory(new PropertyValueFactory<>("islamiatMarks"));
         totalCol.setCellValueFactory(new PropertyValueFactory<>("totalMarks"));
 
-//        Student student1 = new Student("Tanzeel", 15, 15, 15, 15, 15, 15);
-//        Student student2 = new Student("Hizqeel", 20, 20, 20, 20, 20, 20);
-
-//        Students.getInstance().getStudents().addAll(student1, student2);
-
         tableView.setItems(Students.getInstance().getStudents());
 
         tableView.getSelectionModel().selectedItemProperty().addListener(((observableList, newStudent, oldStudent) -> {
@@ -48,6 +45,8 @@ public class Controller {
             islamiatTextField.setText(String.valueOf(oldStudent.getIslamiatMarks()));
             totalTextField.setText(String.valueOf(oldStudent.getTotalMarks()));
         }));
+
+        tableView.getSelectionModel().selectFirst();
     }
 
     public void clearData() {
@@ -64,11 +63,12 @@ public class Controller {
     public void deleteData() {
         Student student = tableView.getSelectionModel().getSelectedItem();
 
-        if (Students.getInstance().delete(student)) {
+        if (!Students.getInstance().delete(student)) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "We have got some Error here. Please Retry!", ButtonType.CLOSE);
             alert.setTitle("Error");
             alert.showAndWait();
         }
+        tableView.getSelectionModel().selectLast();
     }
 
     public void updateData() {
@@ -78,8 +78,11 @@ public class Controller {
         Student newStudent = getStudentForCreateAndUpdate();
 //        We are checking that if the user has typed String inplace of Integer, then we are checking that if the method returned Null
 //        Because when the the user has got some typo mistake, then the method getStudentForCreateAndUpdate() will return us an error.
-        if (newStudent!=null)
+        if (newStudent != null) {
             Students.getInstance().update(oldStudent, newStudent);
+            clearData();
+        }
+        tableView.getSelectionModel().select(newStudent);
     }
 
     public void addData() {
@@ -94,6 +97,8 @@ public class Controller {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "The name " + student.getName() + " already exists in the Table", ButtonType.CLOSE);
                 alert.setTitle("Error");
                 alert.showAndWait();
+            } else {
+                clearData();
             }
         }
 

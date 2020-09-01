@@ -26,6 +26,7 @@ public class Students {
     }
 
     public void update(Student oldStudent, Student newStudent) {
+        newStudent.setRollNo(oldStudent.getRollNo());
         int index = students.indexOf(oldStudent);
         students.remove(index);
         students.add(index, newStudent);
@@ -36,7 +37,7 @@ public class Students {
             if (s.getName().equals(student.getName()))
                 return false;
         }
-
+        student.setRollNo(students.size());
         students.add(student);
         return true;
     }
